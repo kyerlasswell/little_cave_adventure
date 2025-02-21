@@ -20,7 +20,7 @@ void executeLook(const char *noun)
 void executeGo(const char *noun)
 {
   OBJECT *obj = getVisible("where you want to go", noun);
-  if (obj = NULL)
+  if (obj == NULL)
   {
     // already handled by getVisible
   }
