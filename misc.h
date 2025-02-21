@@ -1,1 +1,1 @@
-exetern int listObjectsAtLocation(OBJECT *location);
+extern int listObjectsAtLocation(OBJECT *location);
