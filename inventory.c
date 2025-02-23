@@ -1,4 +1,3 @@
-#include <stdbool.h>
 #include <stdio.h>
 #include "object.h"
 #include "misc.h"
@@ -8,29 +7,25 @@
 void executeGet(const char *noun)
 {
   OBJECT *obj = getVisible("what you want to get", noun);
-  switch (getDistance(player, obj))
+  if (obj == NULL)
   {
-  case distSelf:
-    printf("You should not be doing that to yourself.\n");
-    break;
-  case distHeld:
-    printf("You already have %s.\n", obj->description);
-    break;
-  case distOverThere:
-    printf("Too far away. Move closer, please.\n");
-    break;
-  case distUnknownObject:
     // already handled by getVisible
-    break;
-  default:
-    if (obj->location == guard)
-    {
-      printf("You should ask %s nicely.\n", obj->location->description);
-    }
-    else
-    {
-      moveObject(obj, player);
-    }
+  }
+  else if (obj == player)
+  {
+    printf("You should not be doing that to yourself\n");
+  }
+  else if (obj->location == player)
+  {
+    printf("You already have %s.\n", obj->description);
+  }
+  else if (obj->location == guard)
+  {
+    printf("You should ask %s nicely.\n", obj->location->description);
+  }
+  else
+  {
+    moveObject(obj, player);
   }
 }
 

@@ -50,6 +50,19 @@ OBJECT *actorHere(void)
    return NULL;
 }
 
+OBJECT *actorHere(void)
+{
+  OBJECT *obj;
+  for (obj = objs; obj < endOfObjs; obj++)
+  {
+    if (obj->location == player->location && obj == guard)
+    {
+      return obj;
+    }
+  }
+  return NULL;
+}
+
 int listObjectsAtLocation(OBJECT *location)
 {
    int count = 0;
